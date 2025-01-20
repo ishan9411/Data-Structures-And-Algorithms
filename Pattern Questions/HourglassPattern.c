@@ -25,19 +25,15 @@ int main(){
             printf(" ");
         }
         for (j = a; j > 0;  j--){
-            if(i == n){
-                printf("%c", alpha);
-                continue;
-            }
-            printf("%c", alpha);
+            printf("%c ", alpha);
             alpha++;
         }
         if(i < n){
-            spaces++;
+            spaces = spaces + 2;
             a = a - 2;
         }
         else{
-            spaces--;
+            spaces = spaces -2;
             a = a + 2;
         }
     printf("\n");
