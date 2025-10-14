@@ -1,1 +1,1 @@
-<h1>This Repo contains all the questions of Technical Training given to solve</h1>
+<h1>This Repo contains questions from Data Structure And Algorithms</h1>
