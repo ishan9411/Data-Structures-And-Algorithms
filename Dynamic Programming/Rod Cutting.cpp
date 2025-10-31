@@ -27,3 +27,29 @@ class Solution {
         return maxVal(price, price.size());
     }
 };
+
+//Solution 2 : Bottom-Up
+
+// User function Template for C++
+
+class Solution {
+  public:
+  
+    int cutRod(vector<int> &price) {
+        // code here
+        int n = price.size();
+        vector<int> dp(n+1, -1);
+        
+        dp[0] = 0;  //for 0 length maxValue will be 0
+        dp[1] = price[0]; //for 1 length maxValue will be the 1 length value
+        
+        for(int i = 2; i<=n; i++){   //dp[i] represents the max Value i can get from a rod of length 'i'
+            dp[i] = price[i-1]; //cut nhi kra
+            for(int k = 1; k<i; k++){  //cut kra jbtk cut lgg skta thh
+                dp[i] = max(dp[i], dp[k] + dp[i-k]);  //dono parts ka max value dp se dekhli
+            }
+        }
+        
+        return dp[n];
+    }
+};
