@@ -48,3 +48,22 @@ public:
         return t[n-1];
     }
 };
+
+//Solution 3 : Smart Solution => O(n)
+
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int n = nums.size();
+
+        int maxReachable = 0;
+
+        for(int i = 0; i<n; i++){
+            if(i > maxReachable){ //if i cannot reach the i, I can't go further
+                return false;
+            }
+            maxReachable = max(maxReachable, i + nums[i]); //calculating maxReachable every time
+        }
+        return true;
+    }
+};
