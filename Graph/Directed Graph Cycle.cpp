@@ -1,3 +1,5 @@
+//Solution 1 : DFS
+
 class Solution {
   public:
     bool isCycleDFS(unordered_map<int, vector<int>>& adj, int u, vector<bool>& visited, vector<bool>& inRecursion){
@@ -35,5 +37,50 @@ class Solution {
                 return true;
         }
         return false;
+    }
+};
+
+//Solution 2 : BFS (Topological Sort is not possible means cycle)
+
+class Solution {
+  public:
+    bool isCyclic(int V, vector<vector<int>> &edges) {
+        // code here
+        unordered_map<int, vector<int>> adj;
+        vector<int> indegree(V, 0);
+        
+        for(vector<int>& edge : edges){
+            int u = edge[0];
+            int v = edge[1];
+            adj[u].push_back(v);
+            indegree[v]++;
+        }
+        
+        queue<int> que;
+        int count = 0;
+        
+        for(int i = 0; i<V; i++){
+            if(indegree[i] == 0){
+                count++;
+                que.push(i);
+            }
+            
+        }
+        
+        while(!que.empty()){
+            int u = que.front();
+            que.pop();
+            
+            for(int& v : adj[u]){
+                indegree[v]--;
+                
+                if(indegree[v] == 0){
+                    count++;
+                    que.push(v);
+                }
+            }
+        }
+        if(count == V) return false;
+        return true;
     }
 };
